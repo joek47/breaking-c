@@ -24,8 +24,10 @@ int main(int argc, char *argv[]){
 
     printf("You have %d bugs at rate of %f.\n", bugs, bug_rate);
 
-    long universe_of_defects = 1L * 1024L * 1024L * 1024L;
-    printf("The entire universe has %ld bugs.\n", universe_of_defects);
+    // long universe_of_defects = 1L * 1024L * 1024L * 1024L;
+    long universe_of_defects = 1L * 1024L ^ 1024L ^ 1024L ^ 1000000024L;
+    // printf("The entire universe has %ld bugs.\n", universe_of_defects);
+    printf("The entire universe has %lu bugs.\n", universe_of_defects);
 
     double expected_bugs = bugs * bug_rate;
     printf("You are expected to have %f bugs.\n", expected_bugs);
@@ -35,6 +37,11 @@ int main(int argc, char *argv[]){
 
     //makes no sense
     char nul_byte = '\0';
+    printf("Null byte is %s %c. \n", nul_byte, nul_byte);
+    // https://stackoverflow.com/questions/33279071/passsing-null-byte-via-format-specifier-in-printf/33279219
+    // Null byte is (null) . 
+    //  warning: format ‘%s’ expects argument of type ‘char *’, but argument 2 has type ‘int’ [-Wformat=]
+
     int care_percentage = bugs * nul_byte;
     printf("Which means you should care %d%%.\n", care_percentage);
 

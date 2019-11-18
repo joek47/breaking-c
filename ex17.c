@@ -142,7 +142,7 @@ void Database_write(struct Connection *conn)
        has been fetched from the underlying file, but has not been consumed by the 
        application.  */
     rc = fflush(conn->file);
-    if(rc != -1)
+    if(rc == -1)
         die("Cannot flush database.");
 }
 
@@ -214,7 +214,7 @@ void Database_list(struct Connection *conn)
 
 int main(int argc, char *argv[])
 {
-    if (argc > 3)
+    if (argc < 3)
         die("USAGE: ex17 <dbfile> <action> [action params]");
 
     char *filename = argv[1];

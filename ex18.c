@@ -103,7 +103,8 @@ int main(int argc, char *argv[])
     if (!numbers) die("Memoru error.");
 
     for (i = 0; i < count; i++){
-        numbers[i] = atoi(inputs[i]);
+        // numbers[i] = atoi(inputs[i]);
+        numbers[i] = atoi(inputs[i+1]);
     }
 
     /* lets the caller passs in anything it wants as long it matches the signature 

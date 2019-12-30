@@ -21,11 +21,11 @@ typedef struct List {
 List *List_create();
 void List_destroy(List * list); // space and * doesn't make a difference.
 void List_clear(List * list);
-void List clear_destroy(List * list);
+void List_clear_destroy(List * list);
 
 #define List_count(A) ((A)->count)
-#define List_first(A) ((A)->first != Null ? (A)->first->value : NULL)
-#define List_last(A) ((A)->last != Null ? (A)->last->value : NULL)
+#define List_first(A) ((A)->first != NULL ? (A)->first->value : NULL)
+#define List_last(A) ((A)->last != NULL ? (A)->last->value : NULL)
 
 void List_push(List * list, void *value);
 void *List_pop(List * list);

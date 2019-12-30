@@ -1,8 +1,10 @@
 # https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html
 # https://www.tutorialspoint.com/makefile/makefile_macros.htm
 # The make program allows you to use macros, which are similar to variables. Macros are defined in a Makefile as = pairs. An example has been shown below −
+# https://stackoverflow.com/questions/23851098/c-compile-errors-learn-c-the-hard-way-ex-32
 CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
-LIBS=-ldl $(OPTLIBS)
+# LIBS=-ldl $(OPTLIBS)
+LDLIBS=-ldl $(OPTLIBS)
 PREFIX?=/usr/local
 
 SOURCES=$(wildcard src/**/*.c src/*.c)
@@ -42,7 +44,8 @@ build:
 # Once this is done, ‘make clean’ will run the recipe regardless of whether there is 
 # a file named clean.
 .PHONY: tests
-tests: CFLAGS += $(TARGET)
+# tests: CFLAGS += $(TARGET)
+tests: LDLIBS += -lm -L./build -llcthw
 tests: $(TESTS)
 	sh ./tests/runtests.sh
 

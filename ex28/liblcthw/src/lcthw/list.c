@@ -3,7 +3,7 @@
 
 List *List_create()
 {
-    return calloc(1, sizeof(List);
+    return calloc(1, sizeof(List));
 }
 
 void List_destroy(List * list)
@@ -25,13 +25,13 @@ void List_clear(List * list)
     }
 }
 
-void List_clear_destroy()
+void List_clear_destroy(List * list)
 {
     List_clear(list);
     List_destroy(list);
 }
 
-void List_push()
+void List_push(List * list, void *value)
 {
     ListNode *node = calloc(1, sizeof(ListNode));
     check_mem(node);
@@ -81,7 +81,7 @@ error:
     return;
 }
 
-void *List_shift()  // pop from front
+void *List_shift(List * list)  // pop from front
 {
     ListNode *node = list->first;
     return node != NULL ? List_remove(list, node) : NULL;

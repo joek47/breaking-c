@@ -69,3 +69,59 @@ char *test_remove()
 
     return NULL;
 }
+
+char *test_expand_contract()
+{
+    int old_max = array->max;
+    DArray_expand(array);
+    mu_assert((array->expand_rate + old_max) == array->max, "Wrong size after expansion.");
+
+    DArray_contract(array);
+    mu_assert(array->max == array->expand_rate + 1, "should stay at expand rate.");
+
+    // minimum contraction
+    DArray_contract(array);
+    mu_assert(array->max == array->expand_rate + 1, "should stay at expand rate.");
+
+    return NULL;
+}
+
+char *test_push_pop()
+{
+    int i = 0;
+
+    for(i = 0; i < 1000; i++){
+        int *val = DArray_new(array);
+        *val = i * 333;
+        DArray_push(array, val);
+    }
+
+    mu_assert(array->max = 1201, "Wrong max size.");
+
+    for (i = 999; i >= 0; i--){
+        int *val = DArray_pop(array);
+        mu_assert(val != NULL, "Shouldn't get a NULL.");
+        mu_assert(val == i*333, "Wrong value.");
+        DArray_free(val);
+    }
+
+    return NULL;
+}
+
+char *all_tests()
+{
+    mu_suite_start();
+
+    mu_run_test(test_create);
+    mu_run_test(test_destroy);
+    mu_run_test(test_new);
+    mu_run_test(test_set);
+    mu_run_test(test_get);
+    mu_run_test(test_remove);
+    mu_run_test(test_expand_contract);
+    mu_run_test(test_push_pop);
+
+    return NULL;
+}
+
+RUN_TESTS(all_tests);

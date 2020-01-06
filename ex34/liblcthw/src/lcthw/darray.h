@@ -6,7 +6,7 @@
 
 typedef struct DArray {
     int end;
-    int max;
+    int max;    // max number of elements
     size_t element_size;
     size_t expand_rate;
     void **contents;
